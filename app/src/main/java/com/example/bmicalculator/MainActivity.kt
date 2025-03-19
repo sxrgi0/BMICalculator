@@ -1,10 +1,7 @@
 package com.example.bmicalculator
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +11,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import com.google.android.material.slider.Slider
 import kotlin.math.pow
-import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     //Warning Variables
     lateinit var warningTextView: TextView
     lateinit var warningCardView: CardView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,9 +67,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun setWeight(){
+    fun setWeight() {
         removeWeightButton.setOnClickListener {
-            weight --
+            weight--
             if (weight < 30) {
                 weight = 30f
             }
@@ -80,7 +77,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         addWeightButton.setOnClickListener {
-            weight ++
+            weight++
             if (weight > 300) {
                 weight = 300f
             }
@@ -88,58 +85,70 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun setHeight(){
+    fun setHeight() {
         heightSlider.addOnChangeListener { slider, value, fromUser ->
             height = value
             heightTextView.text = "${value.toInt()} cm"
         }
     }
 
-    fun calculateBMI(){
+    fun calculateBMI() {
 
         bmiCardView.isVisible = false
         warningCardView.isVisible = false
 
+        var colorID = 0
+        var indexID = ""
+
         calculateButton.setOnClickListener {
             val bmi = weight / (height / 100).pow(2)
             bmiTextView.text = String.format("%.2f", bmi)
-            when{
+
+            when {
                 bmi < 18.5f -> {
-                    bmiIndexTextView.text = "Bajo peso"
-                    bmiIndexTextView.setTextColor(Color.parseColor("#ff0000"))
-                    bmiTextView.setTextColor(Color.parseColor("#ff0000"))
+                    indexID = getString(R.string.bmi_Underweight)
+                    colorID = getColor(R.color.bmi_Underweight)
                     warningTextView.text = "Tu IMC indica bajo peso." +
                             " Aumenta calorías con alimentos nutritivos y " +
                             "consulta a un especialista si es necesario."
                 }
-                bmi >= 18.5f && bmi <= 24.9 -> {
-                    bmiIndexTextView.text = "Normal"
-                    bmiIndexTextView.setTextColor(Color.parseColor("#008000"))
-                    bmiTextView.setTextColor(Color.parseColor("#008000"))
+
+                bmi in 18.5f..24.9f -> {
+                    indexID = getString(R.string.bmi_Normalweight)
+                    colorID = getColor(R.color.bmi_Normalweight)
                     warningTextView.text = "¡Tu IMC está en el rango saludable! " +
                             "Mantén una dieta equilibrada, haz ejercicio y " +
                             "prioriza el bienestar."
                 }
-                bmi >= 25.0f && bmi <= 29.9 -> {
-                    bmiIndexTextView.text = "Sobrepeso"
-                    bmiIndexTextView.setTextColor(Color.parseColor("#BA8E23"))
-                    bmiTextView.setTextColor(Color.parseColor("#BA8E23"))
+
+                bmi in 25.0f..29.9f -> {
+                    indexID = getString(R.string.bmi_Overweight)
+                    colorID = getColor(R.color.bmi_Overweight)
                     warningTextView.text = "Tu IMC indica sobrepeso. " +
                             "Mejora tu alimentación, aumenta la actividad física y " +
                             "cuida tus hábitos diarios."
                 }
-                bmi >= 30.0f -> {
-                    bmiIndexTextView.text = "Obesidad"
-                    bmiIndexTextView.setTextColor(Color.parseColor("#ff0000"))
-                    bmiTextView.setTextColor(Color.parseColor("#ff0000"))
+
+                else -> {
+                    indexID = getString(R.string.bmi_Obesity_Weight)
+                    colorID = getColor(R.color.bmi_Obesity_Weight)
                     warningTextView.text = "Tu IMC indica obesidad. " +
                             "Consulta a un experto, adopta cambios sostenibles y " +
                             "evita dietas extremas."
                 }
+
             }
+
+            bmiIndexTextView.setTextColor(colorID)
+            bmiTextView.setTextColor(colorID)
+
+            bmiIndexTextView.text = indexID
+
             bmiCardView.isVisible = true
             warningCardView.isVisible = true
-            //imcTextView.text = "$imc"
+
         }
+
     }
+
 }

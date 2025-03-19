@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Calculadora IMC</string>
+
+    <string name="bmi_Underweight">Bajo peso</string>
+    <string name="bmi_Normalweight">Normal</string>
+    <string name="bmi_Overweight">Sobrepeso</string>
+    <string name="bmi_Obesity_Weight">Obesidad</string>
+
+    <string name="weight_label">Peso</string>
+    <string name="height_label">Altura</string>
+
+    <string name="calculate_button">Calcular IMC</string>
+</resources>
