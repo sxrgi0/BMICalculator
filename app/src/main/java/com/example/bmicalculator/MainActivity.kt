@@ -99,6 +99,7 @@ class MainActivity : AppCompatActivity() {
 
         var colorID = 0
         var indexID = ""
+        var adviceID = ""
 
         calculateButton.setOnClickListener {
             val bmi = weight / (height / 100).pow(2)
@@ -108,33 +109,25 @@ class MainActivity : AppCompatActivity() {
                 bmi < 18.5f -> {
                     indexID = getString(R.string.bmi_Underweight)
                     colorID = getColor(R.color.bmi_Underweight)
-                    warningTextView.text = "Tu IMC indica bajo peso." +
-                            " Aumenta calorías con alimentos nutritivos y " +
-                            "consulta a un especialista si es necesario."
+                    adviceID = getString(R.string.advice_underweight)
                 }
 
                 bmi in 18.5f..24.9f -> {
                     indexID = getString(R.string.bmi_Normalweight)
                     colorID = getColor(R.color.bmi_Normalweight)
-                    warningTextView.text = "¡Tu IMC está en el rango saludable! " +
-                            "Mantén una dieta equilibrada, haz ejercicio y " +
-                            "prioriza el bienestar."
+                    adviceID = getString(R.string.advice_normal)
                 }
 
                 bmi in 25.0f..29.9f -> {
                     indexID = getString(R.string.bmi_Overweight)
                     colorID = getColor(R.color.bmi_Overweight)
-                    warningTextView.text = "Tu IMC indica sobrepeso. " +
-                            "Mejora tu alimentación, aumenta la actividad física y " +
-                            "cuida tus hábitos diarios."
+                    adviceID = getString(R.string.advice_overweight)
                 }
 
                 else -> {
                     indexID = getString(R.string.bmi_Obesity_Weight)
                     colorID = getColor(R.color.bmi_Obesity_Weight)
-                    warningTextView.text = "Tu IMC indica obesidad. " +
-                            "Consulta a un experto, adopta cambios sostenibles y " +
-                            "evita dietas extremas."
+                    adviceID = getString(R.string.advice_obesity)
                 }
 
             }
@@ -142,7 +135,9 @@ class MainActivity : AppCompatActivity() {
             bmiIndexTextView.setTextColor(colorID)
             bmiTextView.setTextColor(colorID)
 
+
             bmiIndexTextView.text = indexID
+            warningTextView.text = adviceID
 
             bmiCardView.isVisible = true
             warningCardView.isVisible = true

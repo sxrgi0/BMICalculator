@@ -11,4 +11,13 @@
     <string name="height_label">Height</string>
 
     <string name="calculate_button">Calculate BMI</string>
+
+    <string name="advice_underweight">Your BMI indicates underweight.
+    Increase your caloria intake with nutritious foods and consult a specialist if needed</string>
+    <string name="advice_normal">Your BMI is in the healthy range! Maintain a balanced diet, exercise regularly,
+    and prioritaze your well-being.</string>
+    <string name="advice_overweight">Your BMI indicates overweight.
+        Improve your diet, increase physical activity, and maintain healthy daily habits.</string>
+    <string name="advice_obesity">Your BMI indicates obesity.
+        Consult a specialist, make sustainable lifestyle changes, and avoid extreme diets.</string>
 </resources>

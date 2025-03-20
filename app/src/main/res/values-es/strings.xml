@@ -11,4 +11,14 @@
     <string name="height_label">Altura</string>
 
     <string name="calculate_button">Calcular IMC</string>
+
+    <string name="advice_underweight">Tu IMC indica bajo peso.
+        Aumenta calorías con alimentos nutritivos
+        y consulta a un especialista si es necesario.</string>
+    <string name="advice_normal">¡Tu IMC está en el rango saludable!
+         Mantén una dieta equilibrada, haz ejercicio y prioriza el bienestar.</string>
+    <string name="advice_overweight">Tu IMC indica sobrepeso.
+        Mejora tu alimentación, aumenta la actividad física y cuida tus hábitos diarios.</string>
+    <string name="advice_obesity">Tu IMC indica obesidad.
+        Consulta a un experto, adopta cambios sostenibles y evita dietas extremas.</string>
 </resources>
